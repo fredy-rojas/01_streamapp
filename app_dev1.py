@@ -24,7 +24,7 @@ import boto3
 # CONFIGURATION
 #_________________________________________________________
 
-st.write("AWS_PROFILE:", os.environ.get("AWS_PROFILE"))
+st.write("BUCKET_NAME:", os.environ.get("BUCKET_NAME"))
 st.write("AWS_DEFAULT_REGION:", os.environ.get("AWS_DEFAULT_REGION"))
 #_________________________________________________________
 # # Creating s3 bucket client
