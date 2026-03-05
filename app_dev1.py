@@ -106,14 +106,15 @@ predict = st.button("Predict")
 #----- 
 # movel instantiation. 
 device = torch.device('cuda') if torch.cuda.is_available() else torch.device('cpu')
-classifier = pipeline('text-classification', 
-                      model='tinybert-sentiment-analysis', 
-                      device=device)
+
 
 #--- 
 # Execution when predict button is hit. 
 if predict:
     with st.spinner("Predicting..."):
+        classifier = pipeline('text-classification', 
+                            model='tinybert-sentiment-analysis', 
+                            device=device)
         output = classifier(text)
         st.write(output)
         # st.info(output)
