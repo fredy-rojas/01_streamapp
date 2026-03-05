@@ -37,10 +37,20 @@ st.write("AWS_DEFAULT_REGION:", os.environ.get("AWS_DEFAULT_REGION"))
 
 # '''
 
-#-==============================================================================================
-#-==============================================================================================
-s3 = boto3.client('s3', 
-                  region_name=AWS_DEFAULT_REGION)
+# #-==============================================================================================
+# #-==============================================================================================
+# it seems that streamlit does not show the secrets values
+# s3 = boto3.client('s3', 
+#                   region_name=AWS_DEFAULT_REGION)
+
+session = boto3.Session(
+    aws_access_key_id=st.secrets["AWS_ACCESS_KEY_ID"],
+    aws_secret_access_key=st.secrets["AWS_SECRET_ACCESS_KEY"],
+    region_name=st.secrets.get("AWS_DEFAULT_REGION", "ap-southeast-2"),
+)
+s3 = session.client("s3")
+
+
 #_________________________________________________________
 # Paths
 local_path = 'tinybert-sentiment-analysis'
