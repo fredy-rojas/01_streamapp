@@ -42,15 +42,23 @@ st.write("Secret keys:", list(st.secrets.keys()))
 # #-==============================================================================================
 # #-==============================================================================================
 # it seems that streamlit does not show the secrets values
-s3 = boto3.client('s3', 
-                  region_name=AWS_DEFAULT_REGION)
+# s3 = boto3.client('s3', 
+#                   region_name=AWS_DEFAULT_REGION)
 
 # session = boto3.Session(
 #     aws_access_key_id=st.secrets["ACCESS_KEY_ID"],
 #     aws_secret_access_key=st.secrets["SECRET_ACCESS_KEY"],
 #     region_name=st.secrets["AWS_DEFAULT_REGION"],
 # )
-# s3 = session.client("s3")
+
+session = boto3.Session(
+    aws_access_key_id=os.getenv("AWS_ACCESS_KEYS_ID"),
+    aws_secret_access_key=os.getenv("AWS_SECRETE_ACCESS_KEY"),
+    region_name=os.getenv("AWS_DEFAULT_REGION"), 
+)
+
+
+s3 = session.client("s3")
 
 
 #_________________________________________________________
